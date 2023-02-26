@@ -1,13 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nike/data/repo/banner_repository.dart';
-import 'package:nike/data/repo/product_repository.dart';
 import 'package:nike/di/locator.dart';
+import 'package:nike/theme.dart';
 import 'package:nike/ui/home.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor));
+  SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor);
   locatorSetUp();
-  runApp(const MyApp());
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,9 +24,10 @@ class MyApp extends StatelessWidget {
     }).catchError((e) {
       debugPrint(e.toString());
     });
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home:
+          Directionality(textDirection: TextDirection.rtl, child: HomeScreen()),
     );
   }
 }
