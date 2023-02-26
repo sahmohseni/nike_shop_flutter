@@ -74,6 +74,104 @@ class HomeScreen extends StatelessWidget {
                                 ))
                           ]),
                         );
+                      case 3:
+                        return Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text(
+                                      'جدیدترین ها',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextButton(
+                                        onPressed: () {},
+                                        child:
+                                            const Text('مشاهده همه ی محصولات'))
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              SizedBox(
+                                height: 200,
+                                child: ListView.builder(
+                                  physics: BouncingScrollPhysics(),
+                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: state.latestProduct.length,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          padding:
+                                              EdgeInsets.fromLTRB(8, 0, 8, 0),
+                                          width: 200,
+                                          height: 150,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          child: ImageLoadingService(
+                                              imageUrl: state
+                                                  .latestProduct[index].image),
+                                        ),
+                                        const SizedBox(
+                                          height: 4,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              state.latestProduct[index].title,
+                                              style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 10),
+                                            ),
+                                            const SizedBox(
+                                              height: 2,
+                                            ),
+                                            Text(
+                                              state.latestProduct[index]
+                                                      .discount
+                                                      .toString() +
+                                                  " " +
+                                                  "T",
+                                              style: const TextStyle(
+                                                  fontSize: 10,
+                                                  decoration: TextDecoration
+                                                      .lineThrough),
+                                            ),
+                                            Text(
+                                              state.latestProduct[index].price
+                                                      .toString() +
+                                                  " " +
+                                                  "T",
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.bold),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    );
+                                  },
+                                ),
+                              )
+                            ],
+                          ),
+                        );
                       default:
                         return Container();
                     }

@@ -7,7 +7,7 @@ import 'package:nike/ui/home.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor));
+      const SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor));
   SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor);
   locatorSetUp();
   runApp(
