@@ -103,8 +103,9 @@ class HomeScreen extends StatelessWidget {
                               SizedBox(
                                 height: 200,
                                 child: ListView.builder(
-                                  physics: BouncingScrollPhysics(),
-                                  padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  physics: const BouncingScrollPhysics(),
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: state.latestProduct.length,
                                   itemBuilder: (context, index) {
