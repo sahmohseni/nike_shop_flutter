@@ -78,20 +78,7 @@ class HomeScreen extends StatelessWidget {
                                 ))
                           ]),
                         );
-                      case 3:
-                        return LatestProducts(
-                          buttonTitle: 'مشاهده ی همه ',
-                          latestProduct: state.latestProduct,
-                          title: 'آخرین محصولات',
-                          onTap: () {},
-                        );
-                      case 4:
-                        return PopularestProducts(
-                          title: 'آخرین محصولات',
-                          buttonTitle: 'مشاهده ی همه',
-                          popularestProduct: state.popularestProduct,
-                          onTap: () {},
-                        );
+
                       default:
                         return Container();
                     }
