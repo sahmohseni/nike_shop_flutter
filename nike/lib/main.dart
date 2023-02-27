@@ -8,7 +8,7 @@ import 'package:nike/ui/home.dart';
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor));
-  SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor);
+  const SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor);
   locatorSetUp();
   runApp(
     const MyApp(),
@@ -24,7 +24,9 @@ class MyApp extends StatelessWidget {
     }).catchError((e) {
       debugPrint(e.toString());
     });
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+          textTheme: TextTheme(bodyText1: TextStyle(fontFamily: 'dana'))),
       debugShowCheckedModeBanner: false,
       home:
           Directionality(textDirection: TextDirection.rtl, child: HomeScreen()),
