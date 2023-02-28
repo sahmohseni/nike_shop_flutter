@@ -8,6 +8,7 @@ import 'package:nike/data/repo/banner_repository.dart';
 import 'package:nike/di/locator.dart';
 import 'package:nike/theme.dart';
 import 'package:nike/ui/bloc/home_bloc.dart';
+import 'package:nike/ui/product/product_details.dart';
 import 'package:nike/ui/widget/widget.dart';
 import 'package:nike/utils/exception.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -68,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                                         spacing: 8.0,
                                         radius: 4.0,
                                         dotWidth: 18,
-                                        dotHeight: 4,
+                                        dotHeight: 2,
                                         paintStyle: PaintingStyle.fill,
                                         strokeWidth: 1,
                                         dotColor: Colors.grey,
@@ -78,7 +79,18 @@ class HomeScreen extends StatelessWidget {
                                 ))
                           ]),
                         );
-
+                      case 3:
+                        return _HorizontalProductsList(
+                            title: 'جدیدترین ها',
+                            buttonTitle: 'مشاهده همه',
+                            onTap: () {},
+                            products: state.latestProduct);
+                      case 4:
+                        return _HorizontalProductsList(
+                            title: 'محبوب ترین ها',
+                            buttonTitle: 'مشاهده ی همه',
+                            onTap: () {},
+                            products: state.popularestProduct);
                       default:
                         return Container();
                     }
@@ -145,6 +157,121 @@ class HomeScreen extends StatelessWidget {
             },
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _HorizontalProductsList extends StatelessWidget {
+  final String title;
+  final String buttonTitle;
+  final List<ProductEntity> products;
+  final GestureTapCallback onTap;
+  _HorizontalProductsList(
+      {required this.title,
+      required this.buttonTitle,
+      required this.onTap,
+      required this.products});
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    buttonTitle,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ))
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 340,
+          child: ListView.builder(
+            itemCount: products.length,
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              final product = products[index];
+              return ProductItem(product: product);
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class ProductItem extends StatelessWidget {
+  const ProductItem({
+    Key? key,
+    required this.product,
+  }) : super(key: key);
+
+  final ProductEntity product;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 260,
+      width: 210,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ProductDetailsScreen(product: product),
+              ));
+            },
+            child: Container(
+              padding: EdgeInsets.fromLTRB(0, 0, 16, 0),
+              height: 260,
+              width: 210,
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(15)),
+              child: ImageLoadingService(imageUrl: product.image),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 6, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    product.title,
+                    maxLines: 1,
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  Text(
+                    product.price.toString() + " " + "Toman",
+                    style: TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12),
+                  ),
+                  Text(
+                    product.discount.toString() + " " + "Toman",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

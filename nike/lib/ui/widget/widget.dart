@@ -27,28 +27,11 @@ class ImageLoadingService extends StatelessWidget {
   const ImageLoadingService({required this.imageUrl});
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 2,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(25),
-        child: Container(
-          height: 220,
-          child: CachedNetworkImage(
-            fit: BoxFit.cover,
-            imageUrl: imageUrl,
-            placeholder: (context, url) {
-              return const Center(
-                  child: SizedBox(
-                height: 30,
-                width: 30,
-                child: CircularProgressIndicator(
-                  color: LightTheme.primaryColor,
-                ),
-              ));
-            },
-            errorWidget: (context, url, error) => const Icon(Icons.error),
-          ),
-        ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        fit: BoxFit.cover,
       ),
     );
   }

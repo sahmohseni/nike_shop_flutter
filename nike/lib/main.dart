@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nike/data/repo/banner_repository.dart';
+import 'package:nike/data/repo/comment_repository.dart';
 import 'package:nike/di/locator.dart';
 import 'package:nike/theme.dart';
 import 'package:nike/ui/home.dart';
@@ -19,14 +20,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    locator.get<BannerRepository>().getAllBanner().then((value) {
-      debugPrint(value.toString());
-    }).catchError((e) {
+    locator.get<CommentRepository>().getComment(7).then(
+      (value) {
+        debugPrint(value.toString());
+      },
+    ).catchError((e) {
       debugPrint(e.toString());
     });
     return MaterialApp(
       theme: ThemeData(
-          textTheme: TextTheme(bodyText1: TextStyle(fontFamily: 'dana'))),
+          textTheme: TextTheme(
+              caption: TextStyle(fontFamily: 'dana'),
+              headline6: TextStyle(fontFamily: 'dana'),
+              bodyText1: TextStyle(fontFamily: 'dana'),
+              bodyText2: TextStyle(fontFamily: 'dana'))),
       debugShowCheckedModeBanner: false,
       home:
           Directionality(textDirection: TextDirection.rtl, child: HomeScreen()),
