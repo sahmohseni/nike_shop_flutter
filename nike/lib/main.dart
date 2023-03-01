@@ -6,6 +6,7 @@ import 'package:nike/data/repo/comment_repository.dart';
 import 'package:nike/di/kiwi_di.dart';
 import 'package:nike/di/locator.dart';
 import 'package:nike/theme.dart';
+import 'package:nike/ui/auth/auth.dart';
 import 'package:nike/ui/home.dart';
 import 'package:nike/ui/root.dart';
 
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontFamily: 'dana'))),
       debugShowCheckedModeBanner: false,
       home:
-          Directionality(textDirection: TextDirection.rtl, child: RootScreen()),
+          Directionality(textDirection: TextDirection.rtl, child: AuthScreen()),
     );
   }
 }
