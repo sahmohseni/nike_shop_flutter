@@ -354,6 +354,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.6.1"
+  kiwi:
+    dependency: "direct main"
+    description:
+      name: kiwi
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.1.0"
   lints:
     dependency: transitive
     description:

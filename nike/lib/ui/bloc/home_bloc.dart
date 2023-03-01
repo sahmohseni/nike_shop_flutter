@@ -17,7 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         try {
           emit(HomeLoading());
           final List<ProductEntity> latestProduct =
-              await locator.get<ProductRepository>().getAllProduct(0);
+              await locator.get<ProductRepository>().getAllProduct(3);
           final List<ProductEntity> popularestProduct =
               await locator.get<ProductRepository>().getAllProduct(1);
           final List<BannerEntity> banners =

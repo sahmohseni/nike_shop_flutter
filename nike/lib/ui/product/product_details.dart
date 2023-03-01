@@ -45,25 +45,26 @@ class ProductDetailsScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          product.title,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                        SizedBox(
+                          width: 280,
+                          child: Text(
+                            product.title,
+                            maxLines: 2,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
                         ),
                         Column(
                           children: [
                             Text(
-                              product.discount.toString(),
+                              product.discount.toString() + "Toman",
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey,
                                   decoration: TextDecoration.lineThrough),
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
                             Text(
-                              product.price.toString(),
+                              product.price.toString() + "Toman",
                               style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             )

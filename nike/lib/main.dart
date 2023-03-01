@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kiwi/kiwi.dart';
 import 'package:nike/data/repo/banner_repository.dart';
 import 'package:nike/data/repo/comment_repository.dart';
+import 'package:nike/di/kiwi_di.dart';
 import 'package:nike/di/locator.dart';
 import 'package:nike/theme.dart';
 import 'package:nike/ui/home.dart';
+import 'package:nike/ui/root.dart';
+
+import 'package:nike/utils/http_client.dart';
 
 void main() {
+  KiwiContainer container = KiwiContainer();
+  container.registerSingleton<HttpClient>((c) => HttpClient());
+  HttpClient theHttp = container.resolve<HttpClient>();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor));
   const SystemUiOverlayStyle(statusBarColor: LightTheme.primaryColor);
@@ -14,6 +22,7 @@ void main() {
   runApp(
     const MyApp(),
   );
+  injector();
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +45,7 @@ class MyApp extends StatelessWidget {
               bodyText2: TextStyle(fontFamily: 'dana'))),
       debugShowCheckedModeBanner: false,
       home:
-          Directionality(textDirection: TextDirection.rtl, child: HomeScreen()),
+          Directionality(textDirection: TextDirection.rtl, child: RootScreen()),
     );
   }
 }
