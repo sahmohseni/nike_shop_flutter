@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nike/data/repo/auth_repository.dart';
+import 'package:nike/di/locator.dart';
 import 'package:nike/theme.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _AuthScreenState extends State<AuthScreen> {
               textAlign: TextAlign.center,
             ),
             isLogin
-                ? SizedBox(
+                ? const SizedBox(
                     height: 0,
                   )
                 : Text('اطلاعات خود را جهت عضویت\nدر سایت وارد کنید'),
@@ -97,7 +99,11 @@ class _AuthScreenState extends State<AuthScreen> {
                             elevation: MaterialStateProperty.all(0),
                             backgroundColor: MaterialStateProperty.all(
                                 Colors.black.withOpacity(0.8))),
-                        onPressed: () {},
+                        onPressed: () {
+                          locator
+                              .get<AuthRepository>()
+                              .login('test@gmail.com', '123456');
+                        },
                         child: const Text(
                           'ورود',
                           style: TextStyle(fontFamily: 'dana', fontSize: 20),

@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:kiwi/kiwi.dart';
 import 'package:nike/data/repo/banner_repository.dart';
 import 'package:nike/data/repo/comment_repository.dart';
-import 'package:nike/di/kiwi_di.dart';
 import 'package:nike/di/locator.dart';
 import 'package:nike/theme.dart';
 import 'package:nike/ui/auth/auth.dart';
@@ -23,7 +22,6 @@ void main() {
   runApp(
     const MyApp(),
   );
-  injector();
 }
 
 class MyApp extends StatelessWidget {

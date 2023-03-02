@@ -12,7 +12,7 @@ _$_CommentEntity _$$_CommentEntityFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       content: json['content'] as String,
       date: json['date'] as String,
-      author: json['author']['email'] as String,
+      author: json['author'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_CommentEntityToJson(_$_CommentEntity instance) =>

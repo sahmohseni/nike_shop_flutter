@@ -1,7 +1,9 @@
 import 'package:get_it/get_it.dart';
+import 'package:nike/data/repo/auth_repository.dart';
 import 'package:nike/data/repo/banner_repository.dart';
 import 'package:nike/data/repo/comment_repository.dart';
 import 'package:nike/data/repo/product_repository.dart';
+import 'package:nike/data/source/auth_data_source.dart';
 import 'package:nike/data/source/banner_data_source.dart';
 import 'package:nike/data/source/comment_data_source.dart';
 import 'package:nike/data/source/product_data_Source.dart';
@@ -17,4 +19,6 @@ void locatorSetUp() {
   locator.registerSingleton<BannerRepository>(BannerRepository());
   locator.registerSingleton<CommentDataSource>(CommentDataSource());
   locator.registerSingleton<CommentRepository>(CommentRepository());
+  locator.registerSingleton<AuthDataSource>(AuthDataSource());
+  locator.registerSingleton<AuthRepository>(AuthRepository());
 }

@@ -1,5 +1,5 @@
 import 'package:nike/data/model/product/product.dart';
-import 'package:nike/di/kiwi_di.dart';
+
 import 'package:nike/di/locator.dart';
 import 'package:nike/utils/http_client.dart';
 import 'package:nike/utils/http_validator.dart';
@@ -13,10 +13,8 @@ abstract class IProductDataSource {
 class ProductDataSource with ResponseValidator implements IProductDataSource {
   @override
   Future<List<ProductEntity>> getAllProduct(int sortBy) async {
-    final getProductResponse = await container
-        .resolve<HttpClient>()
-        .httpClient
-        .get('product/list?sort=3');
+    final getProductResponse =
+        await locator.get<HttpClient>().httpClient.get('product/list?sort=3');
     responseValidator(getProductResponse);
     final List<ProductEntity> productList = [];
     (getProductResponse.data as List<dynamic>).forEach((element) {
