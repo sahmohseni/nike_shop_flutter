@@ -6,7 +6,7 @@ import 'package:nike/utils/http_validator.dart';
 abstract class IAuthDataSource {
   Future<AuthRefresh> login(String userName, String passWord);
 
-  Future<AuthRefresh> register(String userName, String passWord);
+  Future<AuthRefresh> signUp(String userName, String passWord);
 
   Future<AuthRefresh> refreshToken(String token);
 }
@@ -29,14 +29,18 @@ class AuthDataSource with ResponseValidator implements IAuthDataSource {
   }
 
   @override
-  Future<AuthRefresh> refreshToken(String token) {
+  Future<AuthRefresh> refreshToken(String token) async {
     // TODO: implement refreshToken
     throw UnimplementedError();
   }
 
   @override
-  Future<AuthRefresh> register(String userName, String passWord) {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future<AuthRefresh> signUp(String userName, String passWord) async {
+    final getSignUpResponse = await locator
+        .get<HttpClient>()
+        .httpClient
+        .post('user/register', data: {'email': userName, 'password': passWord});
+    responseValidator(getSignUpResponse);
+    return login(userName, passWord);
   }
 }
